@@ -3,6 +3,7 @@ if (!global.hasOwnProperty('db')) {
   var sequelize;
 
   if ( process.env.DATABASE_URL ) {
+    var match = process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
     sequelize = new Sequelize(process.env.DATABASE_URL, {
       dialect: 'postgres',
       protocol: 'postgres',

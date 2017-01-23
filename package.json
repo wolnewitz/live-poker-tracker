@@ -1,0 +1,27 @@
+{
+  "name": "live-poker-tracker",
+  "version": "1.0.0",
+  "description": "Track live poker winnings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolnewitz/live-poker-tracker.git"
+  },
+  "author": "Cory Wolnewitz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wolnewitz/live-poker-tracker/issues"
+  },
+  "homepage": "https://github.com/wolnewitz/live-poker-tracker#readme",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^1.14.0"
+  }
+}

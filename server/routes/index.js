@@ -1,7 +1,8 @@
 var db = require('../models')
 
 exports.getSessions = (req, res) => {
-  db.Session.findAll().then(sessions => {
+  var order = req.query.order || 'DESC';
+  db.Session.findAll({order: [['date', order]]}).then(sessions => {
     res.json(sessions);
   });
 }

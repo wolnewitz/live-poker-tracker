@@ -6,7 +6,7 @@ import { Table } from 'react-bootstrap';
 class SessionList extends Component {
   constructor() {
     super();
-    this.state = {sessions: [], formState: {date: '', hours: '', profit: ''}};
+    this.state = {sessions: [], formState: {date: '', hours: '', profit: ''}, isSubmitting: false};
     this.onSessionSubmit = this.onSessionSubmit.bind(this);
     this.onFormChange = this.onFormChange.bind(this);
   }
@@ -31,7 +31,7 @@ class SessionList extends Component {
     var date = this.state.formState['date'];
     var emptyForm = {date: '', profit: '', hours: ''};
     // clear the form
-    this.setState({formState: emptyForm});
+    this.setState({formState: emptyForm, isSubmitting: true});
 
     var data = {hours: hours, profit: profit, date: date};
 
@@ -42,6 +42,7 @@ class SessionList extends Component {
       method: 'POST',
       body: JSON.stringify(data)
     }).then(res => {
+      this.setState({isSubmitting: false})
       this.fetchSessions();
     })
   }

@@ -21,7 +21,7 @@ const SessionForm = ({state, onSessionSubmit, onFormChange}) =>
       <FormControl type='text' placeholder='eg 1000 or -1000' onChange={(e)=>onFormChange(e)} value={state.formState.profit} />
     </FormGroup>
     { ' ' }
-    <Button type='submit'>
+    <Button type='submit' disabled={state.isSubmitting}>
       Create Session
     </Button>
   </Form>

@@ -40505,7 +40505,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (SessionList.__proto__ || Object.getPrototypeOf(SessionList)).call(this));
 
-	    _this.state = { sessions: [], formState: { date: '', hours: '', profit: '' } };
+	    _this.state = { sessions: [], formState: { date: '', hours: '', profit: '' }, isSubmitting: false };
 	    _this.onSessionSubmit = _this.onSessionSubmit.bind(_this);
 	    _this.onFormChange = _this.onFormChange.bind(_this);
 	    return _this;
@@ -40541,7 +40541,7 @@
 	      var date = this.state.formState['date'];
 	      var emptyForm = { date: '', profit: '', hours: '' };
 	      // clear the form
-	      this.setState({ formState: emptyForm });
+	      this.setState({ formState: emptyForm, isSubmitting: true });
 
 	      var data = { hours: hours, profit: profit, date: date };
 
@@ -40552,6 +40552,7 @@
 	        method: 'POST',
 	        body: JSON.stringify(data)
 	      }).then(function (res) {
+	        _this3.setState({ isSubmitting: false });
 	        _this3.fetchSessions();
 	      });
 	    }
@@ -40739,7 +40740,7 @@
 	    ' ',
 	    _react2.default.createElement(
 	      _reactBootstrap.Button,
-	      { type: 'submit' },
+	      { type: 'submit', disabled: state.isSubmitting },
 	      'Create Session'
 	    )
 	  );

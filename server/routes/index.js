@@ -30,5 +30,8 @@ exports.saveSession = (req, res) => {
   db.Session.create({date: date, hours: hours, profit: profit})
     .then(session => {
       res.send(session);
+    })
+    .catch(err => {
+      res.send("Error");
     });
 }

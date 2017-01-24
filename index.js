@@ -11,7 +11,6 @@ app.use(express.static('./client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/test', routes.test);
 app.get('/sessions', routes.getSessions)
 app.post('/sessions', routes.saveSession)
 

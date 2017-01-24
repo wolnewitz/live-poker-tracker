@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
-import NavBar from './Nav';
 import SessionList from './SessionList';
+import NavBar from './Nav';
 
-class App extends Component {
-  constructor() {
-    super();
-  }
+const App = (props) =>
+  <div>
+    <NavBar />
+    <div className='container'>
+      {props.children}
+    </div>
+  </div>
 
-  render() {
-    return(
-      <div>
-        <NavBar />
-        <div className='container'>
-          <SessionList />
-        </div>
-      </div>
-    );
-  }
-}
-
-export default App;
+  export default App;

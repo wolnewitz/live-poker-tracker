@@ -40623,6 +40623,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var greenOrRed = function greenOrRed(num) {
+	  console.log('num', num);
+	  if (num.toString().match(/^-/)) {
+	    return 'red';
+	  }
+	  return 'green';
+	};
+
 	var Session = function Session(_ref) {
 	  var date = _ref.date,
 	      profit = _ref.profit,
@@ -40642,7 +40650,7 @@
 	    ),
 	    _react2.default.createElement(
 	      'td',
-	      null,
+	      { style: { color: greenOrRed(profit) } },
 	      profit
 	    )
 	  );

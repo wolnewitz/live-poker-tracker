@@ -7,3 +7,7 @@ table {
   min-height: 35px;
   padding-top: 0;
 }
+
+.filtered-sessions {
+  margin-top: 20px;
+}

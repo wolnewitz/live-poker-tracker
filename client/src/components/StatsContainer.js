@@ -34,8 +34,8 @@ export default class StatsContainer extends Component {
             totalHours={totalHours}
             totalProfit={totalProfit}
           />
-          <hr />
           <div className='filtered-sessions'>
+            <hr />
             <p style={{fontSize:'25px'}}>Filtered Session List</p>
             <Table striped bordered hover >
               <thead>

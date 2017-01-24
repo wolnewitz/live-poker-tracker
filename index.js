@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/sessions', routes.getSessions)
 app.post('/sessions', routes.saveSession)
 
+app.get('/*', routes.notFound);
+
 db.sequelize.sync().then(() => {
   app.listen(port, () => {
     console.log(`server running on port ${port}`);

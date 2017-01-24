@@ -19,3 +19,7 @@ exports.saveSession = (req, res) => {
       res.send("Error");
     });
 }
+
+exports.notFound = (req, res) => {
+  res.redirect('/');
+}

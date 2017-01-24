@@ -1,9 +1,5 @@
 import React from 'react';
-
-const greenOrRed = (num) => {
-  if(num.toString().match(/^-/)) { return 'red'; }
-  return 'green'
-}
+import { greenOrRed } from '../helpers/statsHelper';
 
 const Session = ({date, profit, hours}) =>
   <tr>

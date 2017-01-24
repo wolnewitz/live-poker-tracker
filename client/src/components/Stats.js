@@ -1,7 +1,19 @@
 import React from 'react';
+import { Col } from 'react-bootstrap'
+import { greenOrRed } from '../helpers/statsHelper';
 
-export const Stats = ({totalHours}) =>
+export const Stats = ({totalHours, totalProfit}) =>
   <div id='stats-view'>
-    <h1>Total Hours</h1>
-    <p>{ totalHours }</p>
+    <Col md={3}>
+      <p style={{fontSize: '20px'}}>Total Hours</p>
+      <p>{ totalHours }</p>
+    </Col>
+    <Col md={3}>
+      <p style={{fontSize: '20px'}}>Total Profit</p>
+      <p style={{color: greenOrRed(totalProfit)}}>{ `$${totalProfit}` }</p>
+    </Col>
+    <Col md={3}>
+      <p style={{fontSize: '20px'}}>$/hour</p>
+      <p style={{color: greenOrRed(totalProfit/totalHours )}}>{ (totalProfit/totalHours).toPrecision(4) }</p>
+    </Col>
   </div>

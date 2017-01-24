@@ -4,7 +4,7 @@ import { Filters } from './Filters'
 import { Stats } from './Stats'
 import Session from './Session';
 import { Col, Table } from 'react-bootstrap'
-import { getTotalHours } from '../helpers/statsHelper'
+import { getTotalHours, getTotalProfit } from '../helpers/statsHelper'
 
 export default class StatsContainer extends Component {
   constructor() {
@@ -21,6 +21,7 @@ export default class StatsContainer extends Component {
 
   render() {
     const totalHours = getTotalHours(this.state.filteredSessions);
+    const totalProfit = getTotalProfit(this.state.filteredSessions);
 
     return(
       <div>
@@ -28,7 +29,11 @@ export default class StatsContainer extends Component {
           <Filters />
         </Col>
         <Col md={8}>
-          <Stats filteredSessions={this.state.filteredSessions} totalHours={totalHours}/>
+          <Stats
+            filteredSessions={this.state.filteredSessions}
+            totalHours={totalHours}
+            totalProfit={totalProfit}
+          />
           <hr />
           <div className='filtered-sessions'>
             <p style={{fontSize:'25px'}}>Filtered Session List</p>

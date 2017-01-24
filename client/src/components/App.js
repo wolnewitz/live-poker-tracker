@@ -9,7 +9,9 @@ const App = (props) =>
     <div className='container'>
       {props.children}
     </div>
-    <Footer />
+    <div className='footer'>
+      <Footer />
+    </div>
   </div>
 
   export default App;

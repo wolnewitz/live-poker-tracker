@@ -5,17 +5,27 @@ import { Stats } from './Stats'
 import Session from './Session';
 import { Col, Table } from 'react-bootstrap'
 import { getTotalHours, getTotalProfit } from '../helpers/statsHelper'
+import { selectButtonsFilter } from '../helpers/dateHelpers'
 
 export default class StatsContainer extends Component {
   constructor() {
-    super()
-    this.state = {filteredSessions: [], dateRangeFilter: 'all'}
+    super();
+    this.state = {allSessions: [], filteredSessions: []};
+    this.onSelectChange = this.onSelectChange.bind(this);
   }
 
   componentWillMount() {
     getAllSessions().then(sessions => {
-      this.setState({filteredSessions: sessions})
+      this.setState({allSessions: sessions, filteredSessions: sessions})
     });
+  }
+
+  onSelectChange(e) {
+    const filter = e.target.value
+    const filtered = selectButtonsFilter(filter, this.state.allSessions);
+
+    this.setState({filteredSessions: filtered});
+    console.log('this.state', this.state);
   }
 
 
@@ -26,7 +36,7 @@ export default class StatsContainer extends Component {
     return(
       <div>
         <Col md={4}>
-          <Filters />
+          <Filters onSelectChange={this.onSelectChange}/>
         </Col>
         <Col md={8}>
           <Stats

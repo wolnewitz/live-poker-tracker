@@ -4,7 +4,7 @@
   "description": "Track live poker winnings",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register ./client/src/tests/*"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "webpack": "^1.14.0"
   },

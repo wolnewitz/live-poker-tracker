@@ -45718,11 +45718,21 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _fetchSessions = __webpack_require__(434);
+
+	var _Filters = __webpack_require__(496);
+
+	var _Stats = __webpack_require__(497);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45738,22 +45748,37 @@
 	  function StatsContainer() {
 	    _classCallCheck(this, StatsContainer);
 
-	    return _possibleConstructorReturn(this, (StatsContainer.__proto__ || Object.getPrototypeOf(StatsContainer)).call(this));
+	    var _this = _possibleConstructorReturn(this, (StatsContainer.__proto__ || Object.getPrototypeOf(StatsContainer)).call(this));
+
+	    _this.state = { filteredSessions: [], dateRangeFilter: 'all' };
+	    return _this;
 	  }
 
 	  _createClass(StatsContainer, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      (0, _fetchSessions.getAllSessions)().then(function (sessions) {
+	        _this2.setState({ filteredSessions: sessions });
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h1',
+	        'div',
 	        null,
-	        'Stats'
+	        _react2.default.createElement(_Filters.Filters, null),
+	        _react2.default.createElement(_Stats.Stats, null)
 	      );
 	    }
 	  }]);
 
 	  return StatsContainer;
 	}(_react.Component);
+
+	exports.default = StatsContainer;
 
 /***/ },
 /* 491 */
@@ -46030,6 +46055,64 @@
 	        'Cory Wolnewitz'
 	      )
 	    )
+	  );
+	};
+
+/***/ },
+/* 496 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Filters = undefined;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+	var Filters = exports.Filters = function Filters(_ref) {
+	  _objectDestructuringEmpty(_ref);
+
+	  return _react2.default.createElement(
+	    'h1',
+	    null,
+	    'Filters Component'
+	  );
+	};
+
+/***/ },
+/* 497 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Stats = undefined;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+	var Stats = exports.Stats = function Stats(_ref) {
+	  _objectDestructuringEmpty(_ref);
+
+	  return _react2.default.createElement(
+	    'h1',
+	    null,
+	    'Stats Component'
 	  );
 	};
 

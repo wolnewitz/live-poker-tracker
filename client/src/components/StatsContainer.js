@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
+import { getAllSessions } from '../helpers/fetchSessions'
+import { Filters } from './Filters'
+import { Stats } from './Stats'
 
-class StatsContainer extends Component {
+export default class StatsContainer extends Component {
   constructor() {
     super()
+    this.state = {filteredSessions: [], dateRangeFilter: 'all'}
+  }
+
+  componentWillMount() {
+    getAllSessions().then(sessions => {
+      this.setState({filteredSessions: sessions})
+    });
   }
 
   render() {
     return(
-      <h1>Stats</h1>
+      <div>
+        <Filters />
+        <Stats />
+      </div>
     )
   }
 }

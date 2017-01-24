@@ -20,8 +20,5 @@ export const NavBar = () =>
           <NavItem eventKey={2}>Stats</NavItem>
         </LinkContainer>
       </Nav>
-      <Nav pullRight>
-        <NavItem eventKey={2} href="#">Logout</NavItem>
-      </Nav>
     </Navbar.Collapse>
   </Navbar>

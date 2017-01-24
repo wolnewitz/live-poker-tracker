@@ -3,7 +3,7 @@ import { Nav, Navbar, NavItem, MenuItem, NavDropdown } from 'react-bootstrap'
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const NavBar = () =>
+export const NavBar = () =>
   <Navbar collapseOnSelect >
     <Navbar.Header>
       <Navbar.Brand>
@@ -25,5 +25,3 @@ const NavBar = () =>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
-
-  export default NavBar;

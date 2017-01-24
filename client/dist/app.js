@@ -21541,7 +21541,7 @@
 
 	var _Nav = __webpack_require__(488);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _Footer = __webpack_require__(495);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21549,12 +21549,13 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement(_Nav2.default, null),
+	    _react2.default.createElement(_Nav.NavBar, null),
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'container' },
 	      props.children
-	    )
+	    ),
+	    _react2.default.createElement(_Footer.Footer, null)
 	  );
 	};
 
@@ -45615,6 +45616,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.NavBar = undefined;
 
 	var _react = __webpack_require__(1);
 
@@ -45628,7 +45630,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var NavBar = function NavBar() {
+	var NavBar = exports.NavBar = function NavBar() {
 	  return _react2.default.createElement(
 	    _reactBootstrap.Navbar,
 	    { collapseOnSelect: true },
@@ -45683,8 +45685,6 @@
 	    )
 	  );
 	};
-
-	exports.default = NavBar;
 
 /***/ },
 /* 489 */
@@ -45996,6 +45996,42 @@
 
 	exports.default = LinkContainer;
 	module.exports = exports['default'];
+
+/***/ },
+/* 495 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Footer = undefined;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(182);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Footer = exports.Footer = function Footer() {
+	  return _react2.default.createElement(
+	    _reactBootstrap.Navbar,
+	    { fixedBottom: true },
+	    _react2.default.createElement(
+	      _reactBootstrap.Navbar.Text,
+	      { pullRight: true },
+	      'Created By: ',
+	      _react2.default.createElement(
+	        _reactBootstrap.Navbar.Link,
+	        { href: 'https://github.com/wolnewitz' },
+	        'Cory Wolnewitz'
+	      )
+	    )
+	  );
+	};
 
 /***/ }
 /******/ ]);

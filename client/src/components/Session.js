@@ -1,7 +1,6 @@
 import React from 'react';
 
 const greenOrRed = (num) => {
-  console.log('num', num);
   if(num.toString().match(/^-/)) { return 'red'; }
   return 'green'
 }

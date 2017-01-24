@@ -40624,7 +40624,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var greenOrRed = function greenOrRed(num) {
-	  console.log('num', num);
 	  if (num.toString().match(/^-/)) {
 	    return 'red';
 	  }

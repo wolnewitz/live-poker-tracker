@@ -40526,7 +40526,7 @@
 	    }
 	  }, {
 	    key: 'onSessionSubmit',
-	    value: function onSessionSubmit() {
+	    value: function onSessionSubmit(e) {
 	      var hours = this.state.formState['hours'];
 	      var profit = this.state.formState['profit'];
 	      var date = this.state.formState['date'];
@@ -40546,6 +40546,8 @@
 	  }, {
 	    key: 'onFormChange',
 	    value: function onFormChange(e) {
+	      e.preventDefault();
+
 	      var key = e.target.id;
 	      var oldFormState = this.state.formState;
 	      oldFormState[key] = e.target.value;

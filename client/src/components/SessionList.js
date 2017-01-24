@@ -19,7 +19,7 @@ class SessionList extends Component {
     })
   }
 
-  onSessionSubmit() {
+  onSessionSubmit(e) {
     var hours = this.state.formState['hours'];
     var profit = this.state.formState['profit'];
     var date = this.state.formState['date'];
@@ -38,6 +38,8 @@ class SessionList extends Component {
   }
 
   onFormChange(e) {
+    e.preventDefault();
+
     var key = e.target.id;
     var oldFormState = this.state.formState;
     oldFormState[key] = e.target.value;

@@ -23,9 +23,11 @@ exports.getSessions = (req, res) => {
 }
 
 exports.saveSession = (req, res) => {
+  console.log('req body', req);
   var date = req.body.date;
   var hours = req.body.hours;
   var profit = req.body.profit;
+  console.log('dhp', date, hours, profit);
 
   db.Session.create({date: date, hours: hours, profit: profit})
     .then(session => {

@@ -40483,6 +40483,10 @@
 
 	var _Session2 = _interopRequireDefault(_Session);
 
+	var _SessionForm = __webpack_require__(435);
+
+	var _SessionForm2 = _interopRequireDefault(_SessionForm);
+
 	var _reactBootstrap = __webpack_require__(180);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -40501,7 +40505,9 @@
 
 	    var _this = _possibleConstructorReturn(this, (SessionList.__proto__ || Object.getPrototypeOf(SessionList)).call(this));
 
-	    _this.state = { sessions: [] };
+	    _this.state = { sessions: [], formState: { date: '', hours: 0, profit: 0 } };
+	    _this.onSessionSubmit = _this.onSessionSubmit.bind(_this);
+	    _this.onFormChange = _this.onFormChange.bind(_this);
 	    return _this;
 	  }
 
@@ -40519,41 +40525,76 @@
 	      });
 	    }
 	  }, {
+	    key: 'onSessionSubmit',
+	    value: function onSessionSubmit() {
+	      var hours = this.state.formState['hours'];
+	      var profit = this.state.formState['profit'];
+	      var date = this.state.formState['date'];
+
+	      var data = { hours: hours, profit: profit, date: date };
+
+	      fetch('/sessions', {
+	        headers: {
+	          'Content-Type': 'application/json'
+	        },
+	        method: 'POST',
+	        body: JSON.stringify(data)
+	      }).then(function (res) {
+	        console.log('res', res);
+	      });
+	    }
+	  }, {
+	    key: 'onFormChange',
+	    value: function onFormChange(e) {
+	      var key = e.target.id;
+	      var oldFormState = this.state.formState;
+	      oldFormState[key] = e.target.value;
+
+	      this.setState({ formState: oldFormState });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log('state', this.state);
 	      return _react2.default.createElement(
-	        _reactBootstrap.Table,
-	        { striped: true, bordered: true, hover: true },
+	        'div',
+	        null,
+	        _react2.default.createElement(_SessionForm2.default, {
+	          onSessionSubmit: this.onSessionSubmit,
+	          onFormChange: this.onFormChange
+	        }),
 	        _react2.default.createElement(
-	          'thead',
-	          null,
+	          _reactBootstrap.Table,
+	          { striped: true, bordered: true, hover: true },
 	          _react2.default.createElement(
-	            'tr',
+	            'thead',
 	            null,
 	            _react2.default.createElement(
-	              'th',
+	              'tr',
 	              null,
-	              'Date'
-	            ),
-	            _react2.default.createElement(
-	              'th',
-	              null,
-	              'Hours'
-	            ),
-	            _react2.default.createElement(
-	              'th',
-	              null,
-	              'Profit'
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Date'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Hours'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Profit'
+	              )
 	            )
+	          ),
+	          _react2.default.createElement(
+	            'tbody',
+	            null,
+	            this.state.sessions.map(function (s) {
+	              return _react2.default.createElement(_Session2.default, { hours: s.hours, profit: s.profit, date: s.date });
+	            })
 	          )
-	        ),
-	        _react2.default.createElement(
-	          'tbody',
-	          null,
-	          this.state.sessions.map(function (s) {
-	            return _react2.default.createElement(_Session2.default, { hours: s.hours, profit: s.profit, date: s.date });
-	          })
 	        )
 	      );
 	    }
@@ -40606,6 +40647,84 @@
 	};
 
 	exports.default = Session;
+
+/***/ },
+/* 435 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(180);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SessionForm = function SessionForm(_ref) {
+	  var onSessionSubmit = _ref.onSessionSubmit,
+	      onFormChange = _ref.onFormChange;
+	  return _react2.default.createElement(
+	    _reactBootstrap.Form,
+	    { inline: true, onSubmit: function onSubmit(e) {
+	        return onSessionSubmit(e);
+	      } },
+	    _react2.default.createElement(
+	      _reactBootstrap.FormGroup,
+	      { controlId: 'date' },
+	      _react2.default.createElement(
+	        _reactBootstrap.ControlLabel,
+	        null,
+	        'Date'
+	      ),
+	      ' ',
+	      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'eg 10/12/2015', onChange: function onChange(e) {
+	          return onFormChange(e);
+	        } })
+	    ),
+	    ' ',
+	    _react2.default.createElement(
+	      _reactBootstrap.FormGroup,
+	      { controlId: 'hours' },
+	      _react2.default.createElement(
+	        _reactBootstrap.ControlLabel,
+	        null,
+	        'Hours'
+	      ),
+	      ' ',
+	      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Hours', onChange: function onChange(e) {
+	          return onFormChange(e);
+	        } })
+	    ),
+	    ' ',
+	    _react2.default.createElement(
+	      _reactBootstrap.FormGroup,
+	      { controlId: 'profit' },
+	      _react2.default.createElement(
+	        _reactBootstrap.ControlLabel,
+	        null,
+	        'Profit'
+	      ),
+	      ' ',
+	      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'eg 1000 or -1000', onChange: function onChange(e) {
+	          return onFormChange(e);
+	        } })
+	    ),
+	    ' ',
+	    _react2.default.createElement(
+	      _reactBootstrap.Button,
+	      { type: 'submit' },
+	      'Create Session'
+	    )
+	  );
+	};
+
+	exports.default = SessionForm;
 
 /***/ }
 /******/ ]);

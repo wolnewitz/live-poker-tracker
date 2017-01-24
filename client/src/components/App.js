@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import NavBar from './Nav';
+import { API } from '../helpers/api'
 
 class App extends Component {
+  constructor() {
+    super();
+    this.setState = {sessions: []}
+  }
+
+  componentWillMount() {
+    console.log('apiURL', API)
+  }
+
   render() {
     return(
       <div>

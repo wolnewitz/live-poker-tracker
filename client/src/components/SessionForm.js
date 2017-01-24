@@ -22,7 +22,7 @@ const SessionForm = ({state, onSessionSubmit, onFormChange}) =>
     </FormGroup>
     { ' ' }
     <Button type='submit' disabled={state.isSubmitting}>
-      Create Session
+      Add Session
     </Button>
   </Form>
 

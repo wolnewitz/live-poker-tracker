@@ -21843,7 +21843,7 @@
 	    _react2.default.createElement(
 	      _reactBootstrap.Button,
 	      { type: 'submit', disabled: state.isSubmitting },
-	      'Create Session'
+	      'Add Session'
 	    )
 	  );
 	};
@@ -46019,7 +46019,7 @@
 	var Footer = exports.Footer = function Footer() {
 	  return _react2.default.createElement(
 	    _reactBootstrap.Navbar,
-	    { fixedBottom: true },
+	    { id: 'footer', fixedBottom: true },
 	    _react2.default.createElement(
 	      _reactBootstrap.Navbar.Text,
 	      { pullRight: true },

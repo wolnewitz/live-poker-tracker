@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NavBar from './Nav';
-import { API } from '../helpers/api'
 import SessionList from './SessionList';
 
 class App extends Component {

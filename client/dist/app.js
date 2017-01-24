@@ -21516,8 +21516,6 @@
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _api = __webpack_require__(432);
-
 	var _SessionList = __webpack_require__(433);
 
 	var _SessionList2 = _interopRequireDefault(_SessionList);
@@ -40449,21 +40447,7 @@
 	exports.ValidComponentChildren = _ValidComponentChildren3['default'];
 
 /***/ },
-/* 432 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var port = process.env.PORT || 3000;
-	var API = "localhost:" + port;
-
-	exports.API = API;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
+/* 432 */,
 /* 433 */
 /***/ function(module, exports, __webpack_require__) {
 

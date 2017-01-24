@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Session from './Session';
 import SessionForm from './SessionForm';
 import { Table } from 'react-bootstrap';
+import { createSession, getAllSessions } from '../helpers/fetchSessions'
 
 class SessionList extends Component {
   constructor() {
@@ -11,39 +12,40 @@ class SessionList extends Component {
     this.onFormChange = this.onFormChange.bind(this);
   }
 
-  fetchSessions() {
-    fetch('/sessions').then(res => {
-      res.json().then(sessions => {
-        this.setState(() => ({ sessions: sessions }));
-      })
+  updateSessions() {
+    getAllSessions()
+    .then(sessions => {
+      this.setState(() => ({ sessions: sessions }));
     })
   }
 
   componentWillMount() {
-    this.fetchSessions();
+    this.updateSessions();
+  }
+
+  getFormBody() {
+    var hours = this.state.formState['hours'];
+    var profit = this.state.formState['profit'];
+    var date = this.state.formState['date'];
+
+    return {hours: hours, profit: profit, date: date};
+  }
+
+  clearForm() {
+    var emptyForm = {date: '', profit: '', hours: ''};
+    this.setState({ formState: emptyForm });
   }
 
   onSessionSubmit(e) {
     e.preventDefault();
 
-    var hours = this.state.formState['hours'];
-    var profit = this.state.formState['profit'];
-    var date = this.state.formState['date'];
-    var emptyForm = {date: '', profit: '', hours: ''};
-    // clear the form
-    this.setState({formState: emptyForm, isSubmitting: true});
+    var body = this.getFormBody();
+    this.clearForm();
+    this.setState({isSubmitting: true});
 
-    var data = {hours: hours, profit: profit, date: date};
-
-    fetch('/sessions', {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify(data)
-    }).then(res => {
-      this.setState({isSubmitting: false})
-      this.fetchSessions();
+    createSession(body).then(res => {
+      this.setState({isSubmitting: false});
+      this.updateSessions();
     })
   }
 

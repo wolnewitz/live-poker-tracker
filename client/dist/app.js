@@ -40473,6 +40473,8 @@
 
 	var _reactBootstrap = __webpack_require__(180);
 
+	var _fetchSessions = __webpack_require__(436);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40496,22 +40498,35 @@
 	  }
 
 	  _createClass(SessionList, [{
-	    key: 'fetchSessions',
-	    value: function fetchSessions() {
+	    key: 'updateSessions',
+	    value: function updateSessions() {
 	      var _this2 = this;
 
-	      fetch('/sessions').then(function (res) {
-	        res.json().then(function (sessions) {
-	          _this2.setState(function () {
-	            return { sessions: sessions };
-	          });
+	      (0, _fetchSessions.getAllSessions)().then(function (sessions) {
+	        _this2.setState(function () {
+	          return { sessions: sessions };
 	        });
 	      });
 	    }
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      this.fetchSessions();
+	      this.updateSessions();
+	    }
+	  }, {
+	    key: 'getFormBody',
+	    value: function getFormBody() {
+	      var hours = this.state.formState['hours'];
+	      var profit = this.state.formState['profit'];
+	      var date = this.state.formState['date'];
+
+	      return { hours: hours, profit: profit, date: date };
+	    }
+	  }, {
+	    key: 'clearForm',
+	    value: function clearForm() {
+	      var emptyForm = { date: '', profit: '', hours: '' };
+	      this.setState({ formState: emptyForm });
 	    }
 	  }, {
 	    key: 'onSessionSubmit',
@@ -40520,24 +40535,13 @@
 
 	      e.preventDefault();
 
-	      var hours = this.state.formState['hours'];
-	      var profit = this.state.formState['profit'];
-	      var date = this.state.formState['date'];
-	      var emptyForm = { date: '', profit: '', hours: '' };
-	      // clear the form
-	      this.setState({ formState: emptyForm, isSubmitting: true });
+	      var body = this.getFormBody();
+	      this.clearForm();
+	      this.setState({ isSubmitting: true });
 
-	      var data = { hours: hours, profit: profit, date: date };
-
-	      fetch('/sessions', {
-	        headers: {
-	          'Content-Type': 'application/json'
-	        },
-	        method: 'POST',
-	        body: JSON.stringify(data)
-	      }).then(function (res) {
+	      (0, _fetchSessions.createSession)(body).then(function (res) {
 	        _this3.setState({ isSubmitting: false });
-	        _this3.fetchSessions();
+	        _this3.updateSessions();
 	      });
 	    }
 	  }, {
@@ -40731,6 +40735,31 @@
 	};
 
 	exports.default = SessionForm;
+
+/***/ },
+/* 436 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var createSession = exports.createSession = function createSession(body) {
+	  return fetch('/sessions', {
+	    headers: {
+	      'Content-Type': 'application/json'
+	    },
+	    method: 'POST',
+	    body: JSON.stringify(body)
+	  });
+	};
+
+	var getAllSessions = exports.getAllSessions = function getAllSessions() {
+	  return fetch('/sessions').then(function (res) {
+	    return res.json();
+	  });
+	};
 
 /***/ }
 /******/ ]);

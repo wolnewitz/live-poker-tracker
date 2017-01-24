@@ -1,4 +1,7 @@
 import React from 'react';
 
-export const Stats = ({}) =>
-  <h1>Stats Component</h1>
+export const Stats = ({totalHours}) =>
+  <div id='stats-view'>
+    <h1>Total Hours</h1>
+    <p>{ totalHours }</p>
+  </div>

@@ -14,6 +14,6 @@ export const Stats = ({totalHours, totalProfit}) =>
     </Col>
     <Col md={4}>
       <p style={{fontSize: '20px'}}>$/hour</p>
-      <p style={{color: greenOrRed(totalProfit/totalHours )}}>{ `$${(totalProfit/totalHours).toPrecision(4)}` }</p>
+      <p style={{color: greenOrRed(totalProfit/totalHours )}}>{ `$${(totalProfit/totalHours).toFixed(2)}` }</p>
     </Col>
   </div>

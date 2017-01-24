@@ -40512,8 +40512,8 @@
 	  }
 
 	  _createClass(SessionList, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
+	    key: 'fetchSessions',
+	    value: function fetchSessions() {
 	      var _this2 = this;
 
 	      fetch('/sessions').then(function (res) {
@@ -40525,8 +40525,15 @@
 	      });
 	    }
 	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.fetchSessions();
+	    }
+	  }, {
 	    key: 'onSessionSubmit',
 	    value: function onSessionSubmit(e) {
+	      var _this3 = this;
+
 	      var hours = this.state.formState['hours'];
 	      var profit = this.state.formState['profit'];
 	      var date = this.state.formState['date'];
@@ -40540,7 +40547,7 @@
 	        method: 'POST',
 	        body: JSON.stringify(data)
 	      }).then(function (res) {
-	        console.log('res', res);
+	        _this3.fetchSessions();
 	      });
 	    }
 	  }, {

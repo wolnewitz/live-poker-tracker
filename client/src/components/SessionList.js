@@ -11,12 +11,16 @@ class SessionList extends Component {
     this.onFormChange = this.onFormChange.bind(this);
   }
 
-  componentWillMount() {
+  fetchSessions() {
     fetch('/sessions').then(res => {
       res.json().then(sessions => {
         this.setState(() => ({ sessions: sessions }));
       })
     })
+  }
+
+  componentWillMount() {
+    this.fetchSessions();
   }
 
   onSessionSubmit(e) {
@@ -33,7 +37,7 @@ class SessionList extends Component {
       method: 'POST',
       body: JSON.stringify(data)
     }).then(res => {
-      console.log('res', res);
+      this.fetchSessions();
     })
   }
 
@@ -50,7 +54,7 @@ class SessionList extends Component {
   render() {
     return(
       <div>
-        <SessionForm 
+        <SessionForm
           onSessionSubmit={this.onSessionSubmit}
           onFormChange={this.onFormChange}
         />

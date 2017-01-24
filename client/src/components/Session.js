@@ -1,9 +1,11 @@
 import React from 'react';
 
 const Session = ({date, profit, hours}) =>
-  <li>
-    Profit: {profit} 
-  </li>
+  <tr>
+    <td>{ new Date(date).toDateString() }</td>
+    <td>{ hours }</td>
+    <td>{ profit }</td>
+  </tr>
 
 export default Session;
 

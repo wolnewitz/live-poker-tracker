@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Session from './Session';
+import { Table } from 'react-bootstrap';
 
 class SessionList extends Component {
   constructor() {
@@ -18,11 +19,20 @@ class SessionList extends Component {
   render() {
     console.log('state', this.state);
     return(
-      <ul>
-        {this.state.sessions.map(s =>
-          <Session hours={s.hours} profit={s.profit} date={s.date} />
-        )}
-      </ul>
+      <Table striped bordered hover >
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Hours</th>
+            <th>Profit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.sessions.map(s =>
+            <Session hours={s.hours} profit={s.profit} date={s.date} />
+          )}
+        </tbody>
+      </Table>
     )
   }
 }

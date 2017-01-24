@@ -40483,6 +40483,8 @@
 
 	var _Session2 = _interopRequireDefault(_Session);
 
+	var _reactBootstrap = __webpack_require__(180);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40521,11 +40523,38 @@
 	    value: function render() {
 	      console.log('state', this.state);
 	      return _react2.default.createElement(
-	        'ul',
-	        null,
-	        this.state.sessions.map(function (s) {
-	          return _react2.default.createElement(_Session2.default, { hours: s.hours, profit: s.profit, date: s.date });
-	        })
+	        _reactBootstrap.Table,
+	        { striped: true, bordered: true, hover: true },
+	        _react2.default.createElement(
+	          'thead',
+	          null,
+	          _react2.default.createElement(
+	            'tr',
+	            null,
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Date'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Hours'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Profit'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'tbody',
+	          null,
+	          this.state.sessions.map(function (s) {
+	            return _react2.default.createElement(_Session2.default, { hours: s.hours, profit: s.profit, date: s.date });
+	          })
+	        )
 	      );
 	    }
 	  }]);
@@ -40556,10 +40585,23 @@
 	      profit = _ref.profit,
 	      hours = _ref.hours;
 	  return _react2.default.createElement(
-	    'li',
+	    'tr',
 	    null,
-	    'Profit: ',
-	    profit
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      new Date(date).toDateString()
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      hours
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      profit
+	    )
 	  );
 	};
 

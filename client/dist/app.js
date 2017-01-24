@@ -40505,7 +40505,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (SessionList.__proto__ || Object.getPrototypeOf(SessionList)).call(this));
 
-	    _this.state = { sessions: [], formState: { date: '', hours: 0, profit: 0 } };
+	    _this.state = { sessions: [], formState: { date: '', hours: '', profit: '' } };
 	    _this.onSessionSubmit = _this.onSessionSubmit.bind(_this);
 	    _this.onFormChange = _this.onFormChange.bind(_this);
 	    return _this;
@@ -40534,9 +40534,14 @@
 	    value: function onSessionSubmit(e) {
 	      var _this3 = this;
 
+	      e.preventDefault();
+
 	      var hours = this.state.formState['hours'];
 	      var profit = this.state.formState['profit'];
 	      var date = this.state.formState['date'];
+	      var emptyForm = { date: '', profit: '', hours: '' };
+	      // clear the form
+	      this.setState({ formState: emptyForm });
 
 	      var data = { hours: hours, profit: profit, date: date };
 
@@ -40553,8 +40558,6 @@
 	  }, {
 	    key: 'onFormChange',
 	    value: function onFormChange(e) {
-	      e.preventDefault();
-
 	      var key = e.target.id;
 	      var oldFormState = this.state.formState;
 	      oldFormState[key] = e.target.value;
@@ -40569,7 +40572,8 @@
 	        null,
 	        _react2.default.createElement(_SessionForm2.default, {
 	          onSessionSubmit: this.onSessionSubmit,
-	          onFormChange: this.onFormChange
+	          onFormChange: this.onFormChange,
+	          state: this.state
 	        }),
 	        _react2.default.createElement(
 	          _reactBootstrap.Table,
@@ -40683,7 +40687,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SessionForm = function SessionForm(_ref) {
-	  var onSessionSubmit = _ref.onSessionSubmit,
+	  var state = _ref.state,
+	      onSessionSubmit = _ref.onSessionSubmit,
 	      onFormChange = _ref.onFormChange;
 	  return _react2.default.createElement(
 	    _reactBootstrap.Form,
@@ -40701,7 +40706,7 @@
 	      ' ',
 	      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'eg 10/12/2015', onChange: function onChange(e) {
 	          return onFormChange(e);
-	        } })
+	        }, value: state.formState.date })
 	    ),
 	    ' ',
 	    _react2.default.createElement(
@@ -40715,7 +40720,7 @@
 	      ' ',
 	      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Hours', onChange: function onChange(e) {
 	          return onFormChange(e);
-	        } })
+	        }, value: state.formState.hours })
 	    ),
 	    ' ',
 	    _react2.default.createElement(
@@ -40729,7 +40734,7 @@
 	      ' ',
 	      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'eg 1000 or -1000', onChange: function onChange(e) {
 	          return onFormChange(e);
-	        } })
+	        }, value: state.formState.profit })
 	    ),
 	    ' ',
 	    _react2.default.createElement(

@@ -6,7 +6,7 @@ import { Table } from 'react-bootstrap';
 class SessionList extends Component {
   constructor() {
     super();
-    this.state = {sessions: [], formState: {date: '', hours: 0, profit: 0}};
+    this.state = {sessions: [], formState: {date: '', hours: '', profit: ''}};
     this.onSessionSubmit = this.onSessionSubmit.bind(this);
     this.onFormChange = this.onFormChange.bind(this);
   }
@@ -24,9 +24,14 @@ class SessionList extends Component {
   }
 
   onSessionSubmit(e) {
+    e.preventDefault();
+
     var hours = this.state.formState['hours'];
     var profit = this.state.formState['profit'];
     var date = this.state.formState['date'];
+    var emptyForm = {date: '', profit: '', hours: ''};
+    // clear the form
+    this.setState({formState: emptyForm});
 
     var data = {hours: hours, profit: profit, date: date};
 
@@ -42,8 +47,6 @@ class SessionList extends Component {
   }
 
   onFormChange(e) {
-    e.preventDefault();
-
     var key = e.target.id;
     var oldFormState = this.state.formState;
     oldFormState[key] = e.target.value;
@@ -57,6 +60,7 @@ class SessionList extends Component {
         <SessionForm
           onSessionSubmit={this.onSessionSubmit}
           onFormChange={this.onFormChange}
+          state={this.state}
         />
         <Table striped bordered hover >
           <thead>

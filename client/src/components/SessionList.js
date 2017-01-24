@@ -68,7 +68,7 @@ class SessionList extends Component {
           </thead>
           <tbody>
             {this.state.sessions.map(s =>
-              <Session hours={s.hours} profit={s.profit} date={s.date} />
+              <Session key={s.id} hours={s.hours} profit={s.profit} date={s.date} />
             )}
           </tbody>
         </Table>

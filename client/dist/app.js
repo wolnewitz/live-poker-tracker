@@ -40601,7 +40601,7 @@
 	            'tbody',
 	            null,
 	            this.state.sessions.map(function (s) {
-	              return _react2.default.createElement(_Session2.default, { hours: s.hours, profit: s.profit, date: s.date });
+	              return _react2.default.createElement(_Session2.default, { key: s.id, hours: s.hours, profit: s.profit, date: s.date });
 	            })
 	          )
 	        )

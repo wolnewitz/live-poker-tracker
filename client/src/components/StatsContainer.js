@@ -3,6 +3,7 @@ import { getAllSessions } from '../helpers/fetchSessions'
 import { Filters } from './Filters'
 import { Stats } from './Stats'
 import Session from './Session';
+import { Graph } from './Graph';
 import { Col, Table } from 'react-bootstrap'
 import { getTotalHours, getTotalProfit } from '../helpers/statsHelper'
 import { selectButtonsFilter } from '../helpers/dateHelpers'
@@ -25,7 +26,6 @@ export default class StatsContainer extends Component {
     const filtered = selectButtonsFilter(filter, this.state.allSessions);
 
     this.setState({filteredSessions: filtered});
-    console.log('this.state', this.state);
   }
 
 
@@ -44,9 +44,11 @@ export default class StatsContainer extends Component {
             totalHours={totalHours}
             totalProfit={totalProfit}
           />
+          <div id='graph'>
+            <Graph graphData={this.state.filteredSessions}/>
+          </div>
           <div className='filtered-sessions'>
-            <hr />
-            <p style={{fontSize:'25px'}}>Filtered Session List</p>
+            <p style={{marginTop: '10px', fontSize:'25px'}}>Filtered Session List</p>
             <Table striped bordered hover >
               <thead>
                 <tr>

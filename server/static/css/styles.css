@@ -10,5 +10,10 @@ table {
 }
 
 .filtered-sessions {
-  margin-top: 20px;
+  margin-top: 75px;
+  display: block;
+}
+
+.recharts-surface {
+  display: block;
 }

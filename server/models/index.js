@@ -12,7 +12,10 @@ if (!global.hasOwnProperty('db')) {
       logging: true
     })
   } else {
-    sequelize = new Sequelize('live_poker', 'root', null);
+    sequelize = new Sequelize('postgres://localhost:5432/live_poker', {
+      dialect: 'postgres',
+      protocol: 'postgres'
+    });
   }
 
   global.db = {

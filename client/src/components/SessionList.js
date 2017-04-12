@@ -24,11 +24,9 @@ class SessionList extends Component {
   }
 
   getFormBody() {
-    var hours = this.state.formState['hours'];
-    var profit = this.state.formState['profit'];
-    var date = this.state.formState['date'];
+    const { hours, profit, date } = this.state.formState;
 
-    return {hours: hours, profit: profit, date: date};
+    return {hours, profit, date};
   }
 
   clearForm() {
@@ -44,9 +42,9 @@ class SessionList extends Component {
     this.setState({isSubmitting: true});
 
     createSession(body).then(res => {
-      this.setState({isSubmitting: false});
       this.updateSessions();
     })
+    this.setState({isSubmitting: false});
   }
 
   onFormChange(e) {

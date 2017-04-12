@@ -12,6 +12,6 @@ const App = (props) =>
     <div className='footer'>
       <Footer />
     </div>
-  </div>
+  </div>;
 
-  export default App;
+export default App;

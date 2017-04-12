@@ -4,7 +4,8 @@
   "description": "Track live poker winnings",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register ./client/src/tests/*"
+    "test": "mocha --compilers js:babel-core/register ./client/src/tests/*",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
